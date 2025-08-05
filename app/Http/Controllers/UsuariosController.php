@@ -28,7 +28,7 @@ class UsuariosController extends Controller
         $buscaRegistro = User::find($idUser);
         $buscaRegistro->delete();
 
-        return back();
+        return back(); 
     }
 
     public function create(FormRequestUsuarios $request)
@@ -38,6 +38,7 @@ class UsuariosController extends Controller
             $data = $request->all();
             User::create(
              [
+                "permissao_do_usuario" => $data['permissao_do_usuario'],
                 "name" => $data['name'],
                 "email" => $data['email'],
                 "password" => Hash::make($data['password']),

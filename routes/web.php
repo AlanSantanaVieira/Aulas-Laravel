@@ -53,6 +53,12 @@ Route::get('/dashboard', function () {  // tela de login
     return view('index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Rotas de perfil do usuário
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
